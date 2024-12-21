@@ -53,7 +53,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/my-posted-jobs">My Posted Jobs</Link>
+                <Link to="/manage-my-foods">Manage My Foods</Link>
               </li>
               <li>
                 <Link to="/my-bids">My Bids</Link>

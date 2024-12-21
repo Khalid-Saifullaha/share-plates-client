@@ -12,10 +12,11 @@ const FoodCard = ({ food }) => {
     donatorName,
     email,
     foodStatus,
+    _id,
   } = food || {};
   return (
     <div className="">
-      <div className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+      <div className="max-w-xs mx-auto rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
         <figure>
           <img
             src={foodImage}

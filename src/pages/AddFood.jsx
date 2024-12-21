@@ -36,12 +36,22 @@ const AddFood = () => {
       foodStatus,
     };
 
+    try {
+      // 1. make a post request
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-food`,
+        formData
+      );
+      // 2. Reset form
+      form.reset();
+      // 3. Show toast and navigate
+      toast.success("Data Added Successfully!!!");
+      navigate("/my-posted-jobs");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
     // make post request
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/add-food`,
-      formData
-    );
-    console.log(data);
   };
 
   return (
@@ -75,7 +85,7 @@ const AddFood = () => {
               <input
                 id="foodImage"
                 name="foodImage"
-                type="text"
+                type="url"
                 className="block w-full px-4 py-2 mt-2 border rounded-md"
                 required
               />
