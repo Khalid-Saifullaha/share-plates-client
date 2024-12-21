@@ -1,28 +1,148 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddFood = () => {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
   const [startDate, setStartDate] = useState(new Date());
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const foodName = form.foodName.value;
+    const foodImage = form.foodImage.value;
+    const email = form.email.value;
+    const donatorName = form.donatorName.value;
+    const deadline = startDate;
+    const pickupLocation = form.pickupLocation.value;
+    const additionalNotes = form.additionalNotes.value;
+    const foodQuantity = parseFloat(form.foodQuantity.value);
+    const foodStatus = form.foodStatus.value;
+
+    const formData = {
+      foodName,
+      foodImage,
+      foodQuantity,
+      pickupLocation,
+      deadline,
+      additionalNotes,
+      donatorName,
+      email,
+      foodStatus,
+    };
+
+    // make post request
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/add-food`,
+      formData
+    );
+    console.log(data);
+  };
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <section className=" p-2 md:p-6 mx-auto bg-white rounded-md shadow-md ">
         <h2 className="text-lg font-semibold text-gray-700 capitalize ">
-          Post a Job
+          Add Food
         </h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            {/* Food Name */}
             <div>
-              <label className="text-gray-700 " htmlFor="job_title">
-                Job Title
+              <label className="text-gray-700" htmlFor="foodName">
+                Food Name
               </label>
               <input
-                id="job_title"
-                name="job_title"
+                id="foodName"
+                name="foodName"
                 type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+                required
+              />
+            </div>
+
+            {/* Food Image */}
+            <div>
+              <label className="text-gray-700" htmlFor="foodImage">
+                Food Image URL
+              </label>
+              <input
+                id="foodImage"
+                name="foodImage"
+                type="text"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+                required
+              />
+            </div>
+
+            {/* Food Quantity */}
+            <div>
+              <label className="text-gray-700" htmlFor="foodQuantity">
+                Food Quantity
+              </label>
+              <input
+                id="foodQuantity"
+                name="foodQuantity"
+                type="number"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+                required
+              />
+            </div>
+
+            {/* Pickup Location */}
+            <div>
+              <label className="text-gray-700" htmlFor="pickupLocation">
+                Pickup Location
+              </label>
+              <input
+                id="pickupLocation"
+                name="pickupLocation"
+                type="text"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+                required
+              />
+            </div>
+
+            {/* Expiration Date */}
+            <div className="flex flex-col gap-2">
+              <label className="text-gray-700">Expiration Date</label>
+              <DatePicker
+                className="border p-2 rounded-md"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                required
+              />
+            </div>
+
+            {/* Additional Notes */}
+            <div className="col-span-2">
+              <label className="text-gray-700" htmlFor="additionalNotes">
+                Additional Notes
+              </label>
+              <textarea
+                id="additionalNotes"
+                name="additionalNotes"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+              ></textarea>
+            </div>
+
+            <div>
+              <label className="text-gray-700" htmlFor="donatorName">
+                Donator Name
+              </label>
+              <input
+                id="donatorName"
+                name="donatorName"
+                type="text"
+                defaultValue={user?.displayName}
+                disabled={true}
+                className="block w-full px-4 py-2 mt-2 border bg-gray-100 rounded-md"
               />
             </div>
 
@@ -32,73 +152,33 @@ const AddFood = () => {
               </label>
               <input
                 id="emailAddress"
+                defaultValue={user?.email}
+                disabled={true}
                 type="email"
                 name="email"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700">Deadline</label>
 
-              {/* Date Picker Input Field */}
-              <DatePicker
-                className="border p-2 rounded-md"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700 " htmlFor="category">
-                Category
-              </label>
-              <select
-                name="category"
-                id="category"
-                className="border p-2 rounded-md"
-              >
-                <option value="Web Development">Web Development</option>
-                <option value="Graphics Design">Graphics Design</option>
-                <option value="Digital Marketing">Digital Marketing</option>
-              </select>
-            </div>
+            {/* Food Status */}
             <div>
-              <label className="text-gray-700 " htmlFor="min_price">
-                Minimum Price
+              <label className="text-gray-700" htmlFor="foodStatus">
+                Food Status
               </label>
               <input
-                id="min_price"
-                name="min_price"
-                type="number"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-700 " htmlFor="max_price">
-                Maximum Price
-              </label>
-              <input
-                id="max_price"
-                name="max_price"
-                type="number"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                id="foodStatus"
+                name="foodStatus"
+                type="text"
+                defaultValue="available"
+                disabled={true}
+                className="block w-full px-4 py-2 mt-2 border bg-gray-100 rounded-md"
               />
             </div>
           </div>
-          <div className="flex flex-col gap-2 mt-4">
-            <label className="text-gray-700 " htmlFor="description">
-              Description
-            </label>
-            <textarea
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              name="description"
-              id="description"
-            ></textarea>
-          </div>
+
           <div className="flex justify-end mt-6">
             <button className="disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-              Save
+              Add Food
             </button>
           </div>
         </form>
