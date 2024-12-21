@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/job/:id",
+        path: "/foodDetails/:id",
         element: (
           <PrivateRoute>
             <FoodDetails></FoodDetails>
