@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import axios from "axios";
 import FoodCard from "../components/FoodCard";
+import Contact from "./Contact";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
@@ -25,6 +26,7 @@ const Home = () => {
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
       </div>
+      <Contact></Contact>
     </div>
   );
 };

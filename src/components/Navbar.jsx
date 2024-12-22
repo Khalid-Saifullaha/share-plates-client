@@ -31,6 +31,9 @@ const Navbar = () => {
           <li>
             <Link to="/my-food-request">Food Request</Link>
           </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
 
           {!user && (
             <li>
