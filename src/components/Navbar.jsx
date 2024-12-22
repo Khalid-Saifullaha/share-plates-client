@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/pngtree-s-abstract-icon-png-image_2924705.png";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
 const Navbar = () => {
