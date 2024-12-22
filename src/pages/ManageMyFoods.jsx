@@ -65,7 +65,7 @@ const ManageMyFoods = () => {
   return (
     <section className="container px-4 mx-auto pt-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800 ">My Posted Jobs</h2>
+        <h2 className="text-lg font-medium text-gray-800 ">My Posted Foods</h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
           {foods.length} Food

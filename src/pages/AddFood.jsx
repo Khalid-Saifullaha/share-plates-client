@@ -18,6 +18,7 @@ const AddFood = () => {
     const foodImage = form.foodImage.value;
     const email = form.email.value;
     const donatorName = form.donatorName.value;
+    const donatorPhoto = form.donatorPhoto.value;
     const deadline = startDate;
     const pickupLocation = form.pickupLocation.value;
     const additionalNotes = form.additionalNotes.value;
@@ -33,6 +34,7 @@ const AddFood = () => {
       additionalNotes,
       donatorName,
       email,
+      donatorPhoto,
       foodStatus,
     };
 
@@ -46,7 +48,7 @@ const AddFood = () => {
       form.reset();
       // 3. Show toast and navigate
       toast.success("Data Added Successfully!!!");
-      navigate("/my-posted-jobs");
+      navigate("/manage-my-foods");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -182,6 +184,22 @@ const AddFood = () => {
                 defaultValue="available"
                 disabled={true}
                 className="block w-full px-4 py-2 mt-2 border bg-gray-100 rounded-md"
+              />
+            </div>
+
+            {/* Food Image */}
+            <div>
+              <label className="text-gray-700" htmlFor="foodImage">
+                Food Donator Image URL
+              </label>
+              <input
+                id="donatorPhoto"
+                name="donatorPhoto"
+                defaultValue={user?.photoURL}
+                disabled={true}
+                type="url"
+                className="block w-full px-4 py-2 mt-2 border rounded-md"
+                required
               />
             </div>
           </div>

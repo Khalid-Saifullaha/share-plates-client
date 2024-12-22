@@ -6,14 +6,13 @@ import Register from "../pages/Authentication/Register";
 
 import PrivateRoute from "./PrivateRoute";
 
-import MyPostedJobs from "../pages/ManageMyFoods";
-
 import ErrorPage from "../pages/ErrorPage";
 import AvailableFoods from "../pages/AvailableFoods";
 import AddFood from "../pages/AddFood";
 import FoodDetails from "../pages/FoodDetails";
 import UpdateFood from "../pages/UpdateFood";
 import ManageMyFoods from "../pages/ManageMyFoods";
+import MyFoodRequest from "../pages/MyFoodRequest";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +58,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddFood></AddFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-food-request",
+
+        element: (
+          <PrivateRoute>
+            <MyFoodRequest></MyFoodRequest>
           </PrivateRoute>
         ),
       },

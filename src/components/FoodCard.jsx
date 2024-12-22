@@ -28,15 +28,22 @@ const FoodCard = ({ food }) => {
           <h2 className="card-title text-3xl">{foodName}</h2>
           <div className="flex justify-between gap-4">
             <div>
-              {" "}
               <p>
-                <span className="font-semibold ">Deadline:</span>{" "}
+                <span className="font-semibold">Deadline:</span>{" "}
                 {format(new Date(deadline), "P")}
               </p>
+              <p>
+                <span className="font-semibold">Status:</span>{" "}
+                {new Date(deadline) > new Date() ? (
+                  <span className="text-green-600 font-bold">Available</span>
+                ) : (
+                  <span className="text-red-600 font-bold">Unavailable</span>
+                )}
+              </p>
             </div>
-            <div>
+            {/* <div>
               <p className="bg-blue-100 px-1 ml-9 rounded-2xl">{foodStatus}</p>
-            </div>
+            </div> */}
           </div>
           <div>
             <span className="font-semibold ">Food Quantity:</span>{" "}
@@ -50,7 +57,7 @@ const FoodCard = ({ food }) => {
             </div>
           </div>
           <div>
-            <NavLink to={`/foodDetails/:id`}>
+            <NavLink to={`/foodDetails/${_id}`}>
               <button className="btn btn-primary text-white font-bold my-3">
                 See Details
               </button>

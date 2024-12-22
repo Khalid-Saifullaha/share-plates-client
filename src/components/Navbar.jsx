@@ -25,6 +25,12 @@ const Navbar = () => {
               Add Food
             </Link>
           </li>
+          <li>
+            <Link to="/manage-my-foods">Manage My Foods</Link>
+          </li>
+          <li>
+            <Link to="/my-food-request">Food Request</Link>
+          </li>
 
           {!user && (
             <li>
@@ -52,9 +58,6 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/manage-my-foods">Manage My Foods</Link>
-              </li>
               <li>
                 <Link to="/my-bids">My Bids</Link>
               </li>
