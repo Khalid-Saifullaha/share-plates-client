@@ -20,6 +20,11 @@ const Home = () => {
       <div>
         <Carousel></Carousel>
       </div>
+      <div className="grid md:grid-cols-3  gap-3 w-11/12 px-6 py-10 mx-auto  ">
+        {foods.map((food) => (
+          <FoodCard key={food._id} food={food}></FoodCard>
+        ))}
+      </div>
     </div>
   );
 };
