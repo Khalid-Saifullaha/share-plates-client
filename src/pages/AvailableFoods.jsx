@@ -24,7 +24,7 @@ const AvailableFoods = () => {
           required
         />
       </div>
-      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3  w-11/12 px-6 py-10 mx-auto">
         {foods.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}

@@ -10,9 +10,9 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Slide from "./Slide";
 
-import bgimg1 from "../assets/images/carousel1.jpg";
-import bgimg2 from "../assets/images/carousel2.jpg";
-import bgimg3 from "../assets/images/carousel3.jpg";
+import bgimg1 from "../assets/images/group-of-people-sharing-good.jpg";
+import bgimg2 from "../assets/images/Sharing-food-with-friends.jpg";
+import bgimg3 from "../assets/images/65b52bff18c0ed907621e018_63cf393910e34f19668e1e52_EatFirst-OriccoTopPick.webp";
 
 export default function Carousel() {
   return (
@@ -35,19 +35,19 @@ export default function Carousel() {
         <SwiperSlide>
           <Slide
             image={bgimg1}
-            text="Get Your Web Development Projects Done in minutes"
+            text="Craving Something? Discover Your Food Now."
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg2}
-            text="Get Your Graphics Design Projects Done in minutes"
+            text="Order, Relax, and Let the Food Come to You."
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg3}
-            text="Start Your Digital Marketing Campaigns up n running"
+            text="Find Your Favorite Food with Just One Click!"
           />
         </SwiperSlide>
       </Swiper>
