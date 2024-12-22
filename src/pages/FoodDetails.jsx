@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../providers/AuthProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { compareAsc, format } from "date-fns";
 import toast from "react-hot-toast";
 
 const FoodDetails = () => {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -45,12 +46,14 @@ const FoodDetails = () => {
     const pickupLocation = form.pickupLocation.value;
     const expireDeadline = form.expireDeadline.value;
     const requestDate = form.requestDate.value;
+    const jobId = _id;
 
     const requestData = {
       donatorName,
       pickupLocation,
       requestDate,
       expireDeadline,
+      jobId,
     };
     console.log(requestData);
 
@@ -60,6 +63,22 @@ const FoodDetails = () => {
     // 2. Deadline crossed validation
     if (compareAsc(new Date(), new Date(deadline)) === 1)
       return toast.error("Deadline Crossed, Food Unavailable");
+
+    try {
+      // 1. make a post request
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-request`,
+        requestData
+      );
+      // 2. Reset form
+      form.reset();
+      // 3. Show toast and navigate
+      toast.success("Food Request Successful!!!");
+      navigate("/my-food-request");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data);
+    }
   };
 
   return (
