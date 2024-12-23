@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AvailableFoods = () => {
+  const axiosSecure = useAxiosSecure();
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
   const [isThreeColumn, setIsThreeColumn] = useState(true);
@@ -11,9 +13,7 @@ const AvailableFoods = () => {
   }, [search]);
 
   const fetchAllFoods = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/foods?search=${search}`
-    );
+    const { data } = await axiosSecure.get(`/foods?search=${search}`);
     setFoods(data);
   };
 

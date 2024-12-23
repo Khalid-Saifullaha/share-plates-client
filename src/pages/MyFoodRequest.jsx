@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyFoodRequest = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [foodsRequest, setFoodsRequest] = useState([]);
   useEffect(() => {
     fetchAllFoods();
   }, [user]);
   const fetchAllFoods = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/requests`
-    );
+    const { data } = await axiosSecure.get(`/requests/${user?.email}`, {
+      withCredentials: true,
+    });
     setFoodsRequest(data);
   };
   // console.log(foodsRequest);

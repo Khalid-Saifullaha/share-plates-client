@@ -5,8 +5,10 @@ import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { compareAsc, format } from "date-fns";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const FoodDetails = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useContext(AuthContext);
@@ -17,9 +19,7 @@ const FoodDetails = () => {
     fetchFoodData();
   }, [id]);
   const fetchFoodData = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/food/${id}`
-    );
+    const { data } = await axiosSecure.get(`/food/${id}`);
     setFood(data);
     setStartDate(new Date(data.deadline));
   };
@@ -67,10 +67,7 @@ const FoodDetails = () => {
 
     try {
       // 1. make a post request
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/add-request`,
-        requesData
-      );
+      const { data } = await axiosSecure.post(`/add-request`, requesData);
       // 2. Reset form
       form.reset();
       // 3. Show toast and navigate
@@ -79,7 +76,7 @@ const FoodDetails = () => {
       navigate("/my-food-request");
     } catch (err) {
       console.log(err);
-      toast.error(err?.response?.data);
+      toast.error("You have already placed a request on this food!");
     }
   };
 
