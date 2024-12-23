@@ -1,9 +1,11 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useState } from "react";
 
 const FoodRequest = ({ foodRequest }) => {
-  const { donatorName, pickupLocation, requestDate, expireDeadline } =
+  const [startDate, setStartDate] = useState(new Date());
+  const { donatorName, pickupLocation, deadline, requestDate, expireDeadline } =
     foodRequest || {};
+  console.log(foodRequest);
   return (
     <tr>
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -23,7 +25,7 @@ const FoodRequest = ({ foodRequest }) => {
           <p
             className={`px-3 py-1  text-blue-500 bg-blue-100/60 text-xs  rounded-full`}
           >
-            {format(Date(expireDeadline), "P")}
+            {expireDeadline}
           </p>
         </div>
       </td>

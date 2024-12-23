@@ -35,9 +35,9 @@ const FoodCard = ({ food }) => {
               <p>
                 <span className="font-semibold">Status:</span>{" "}
                 {new Date(deadline) > new Date() ? (
-                  <span className="text-green-600 font-bold">Available</span>
+                  <span className="text-green-600 font-bold">{foodStatus}</span>
                 ) : (
-                  <span className="text-red-600 font-bold">Unavailable</span>
+                  <span className="text-red-600 font-bold">Expire</span>
                 )}
               </p>
             </div>

@@ -18,6 +18,19 @@ const Registration = () => {
     const photo = form.photo.value;
     const pass = form.password.value;
     console.log({ email, pass, name, photo });
+
+    // Password Validation
+    const isValidPassword =
+      /[A-Z]/.test(pass) && // At least one uppercase letter
+      /[a-z]/.test(pass) && // At least one lowercase letter
+      pass.length >= 6; // At least 6 characters
+
+    if (!isValidPassword) {
+      toast.error(
+        "Password must be at least 6 characters long and include an uppercase letter and a lowercase letter."
+      );
+      return;
+    }
     try {
       //2. User Registration
       const result = await createUser(email, pass);
