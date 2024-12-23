@@ -58,7 +58,7 @@ const FoodCard = ({ food }) => {
           </div>
           <div>
             <NavLink to={`/foodDetails/${_id}`}>
-              <button className="btn btn-primary text-white font-bold my-3">
+              <button className="btn text-gray-100 btn-primary bg-gray-700 rounded-md hover:bg-gray-600 font-bold my-3">
                 See Details
               </button>
             </NavLink>
