@@ -15,7 +15,7 @@ const Home = () => {
     );
     setFoods(data);
   };
-  console.log(foods);
+  // console.log(foods);
   return (
     <div className="">
       <div>

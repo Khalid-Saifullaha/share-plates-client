@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
-import FoodRequest from "../components/FoodRequest";
 
 const MyFoodRequest = () => {
   const { user } = useContext(AuthContext);
@@ -11,17 +10,20 @@ const MyFoodRequest = () => {
   }, [user]);
   const fetchAllFoods = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/request/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/requests`
     );
     setFoodsRequest(data);
   };
+  // console.log(foodsRequest);
   return (
     <section className="container px-4 mx-auto my-12">
-      <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800 ">Food Request</h2>
+      <div className="flex justify-center items-center gap-x-3">
+        <h2 className="text-lg font-medium text-gray-800 ">
+          All Food Requests
+        </h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
-          {foodsRequest.length} Request
+          {foodsRequest.length} Food Request
         </span>
       </div>
 
@@ -63,25 +65,26 @@ const MyFoodRequest = () => {
                     >
                       Request Date
                     </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      Status
-                    </th>
-
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Actions
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
-                  {foodsRequest.map((foodRequest) => (
-                    <FoodRequest
-                      key={foodRequest._id}
-                      foodRequest={foodRequest}
-                    ></FoodRequest>
+                  {foodsRequest.map((request) => (
+                    <tr key={request._id}>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {request.donatorName}
+                      </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {request.pickupLocation}
+                      </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {request.expireDeadline}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                        {request.requestDate}
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>

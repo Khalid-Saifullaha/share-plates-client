@@ -46,16 +46,8 @@ const FoodDetails = () => {
     const pickupLocation = form.pickupLocation.value;
     const expireDeadline = form.expireDeadline.value;
     const requestDate = form.requestDate.value;
-    const jobId = _id;
 
-    const requestData = {
-      donatorName,
-      pickupLocation,
-      requestDate,
-      expireDeadline,
-      jobId,
-    };
-    console.log(requestData);
+    const jobId = _id;
 
     // 1. Check bid permissions validation
     if (user?.email === email) return toast.error("Action not permitted!");
@@ -64,16 +56,26 @@ const FoodDetails = () => {
     if (compareAsc(new Date(), new Date(deadline)) === 1)
       return toast.error("Deadline Crossed, Food Unavailable");
 
+    const requesData = {
+      donatorName,
+      pickupLocation,
+      requestDate,
+      expireDeadline,
+      jobId,
+      email,
+    };
+
     try {
       // 1. make a post request
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/add-request`,
-        requestData
+        requesData
       );
       // 2. Reset form
       form.reset();
       // 3. Show toast and navigate
       toast.success("Food Request Successful!!!");
+      console.log(data);
       navigate("/my-food-request");
     } catch (err) {
       console.log(err);
@@ -318,7 +320,7 @@ const FoodDetails = () => {
                 defaultValue={email}
                 disabled={true}
                 type="email"
-                name="email"
+                name="donatorEmail"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>

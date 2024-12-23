@@ -30,7 +30,7 @@ const FoodCard = ({ food }) => {
             <div>
               <p>
                 <span className="font-semibold">Deadline:</span>{" "}
-                {format(new Date(deadline), "P")}
+                {deadline && format(new Date(deadline), "P")}
               </p>
               <p>
                 <span className="font-semibold">Status:</span>{" "}
