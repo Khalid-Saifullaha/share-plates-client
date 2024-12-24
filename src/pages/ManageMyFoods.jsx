@@ -5,18 +5,26 @@ import axios from "axios";
 
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ManageMyFoods = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const [foods, setFoods] = useState([]);
-  useEffect(() => {
-    fetchAllFoods();
-  }, [user]);
-  const fetchAllFoods = async () => {
-    const { data } = await axiosSecure.get(`/foods/${user?.email}`);
-    setFoods(data);
-  };
+
+  const {
+    data: foods,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["foods"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/foods/${user?.email}`);
+      return data;
+    },
+  });
+
+  if (isLoading) return <LoadingSpinner />;
 
   //  delete functionality
   const handleDelete = async (id) => {
@@ -26,7 +34,7 @@ const ManageMyFoods = () => {
       );
       console.log(data);
       toast.success("Data Added Successfully!!!");
-      fetchAllFoods();
+      refetch();
     } catch (err) {
       console.log(err);
       toast.error(err.message);

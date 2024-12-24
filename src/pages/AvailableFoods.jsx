@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
 import useAxiosSecure from "../hooks/useAxiosSecure";

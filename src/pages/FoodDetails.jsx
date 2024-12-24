@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { compareAsc, format } from "date-fns";
