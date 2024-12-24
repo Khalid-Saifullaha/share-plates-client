@@ -1,16 +1,28 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
-import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddFood = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: async (foodData) => {
+      await axiosSecure.post(`/add-food`, foodData);
+    },
+    onSuccess: () => {
+      console.log("data saved");
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -39,11 +51,8 @@ const AddFood = () => {
     };
 
     try {
-      // 1. make a post request
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/add-food`,
-        formData
-      );
+      // 1. make a post request using useMutation hook
+      await mutateAsync(formData);
       // 2. Reset form
       form.reset();
       // 3. Show toast and navigate
@@ -206,7 +215,7 @@ const AddFood = () => {
 
           <div className="flex justify-end mt-6">
             <button className="disabled:cursor-not-allowed px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-              Add Food
+              {isPending ? "Add Food...." : "Add Food"}
             </button>
           </div>
         </form>
