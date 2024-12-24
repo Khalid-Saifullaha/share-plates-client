@@ -14,6 +14,7 @@ import UpdateFood from "../pages/UpdateFood";
 import ManageMyFoods from "../pages/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
 import Contact from "../pages/Contact";
+import AboutUs from "../pages/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/login",
