@@ -20,17 +20,7 @@ const Navbar = () => {
           <li>
             <Link to="/availableFoods">Available Foods</Link>
           </li>
-          <li>
-            <Link to="/add-food" className="justify-between">
-              Add Food
-            </Link>
-          </li>
-          <li>
-            <Link to="/manage-my-foods">Manage My Foods</Link>
-          </li>
-          <li>
-            <Link to="/my-food-request">Food Request</Link>
-          </li>
+
           <li>
             <Link to="/contact">Contact Us</Link>
           </li>
@@ -65,7 +55,15 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/my-bids">My Bids</Link>
+                <Link to="/add-food" className="justify-between">
+                  Add Food
+                </Link>
+              </li>
+              <li>
+                <Link to="/manage-my-foods">Manage My Foods</Link>
+              </li>
+              <li>
+                <Link to="/my-food-request">Food Request</Link>
               </li>
               <li>
                 <Link to="/bid-requests">Bid Requests</Link>
