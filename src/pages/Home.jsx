@@ -4,6 +4,7 @@ import axios from "axios";
 import FoodCard from "../components/FoodCard";
 import Contact from "./Contact";
 import AboutUs from "./AboutUs";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
@@ -29,6 +30,13 @@ const Home = () => {
         {foods.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
+      </div>
+      <div className="flex justify-center">
+        <NavLink to={"/availableFoods"}>
+          <button className="btn text-gray-100 btn-primary bg-gray-700 rounded-md hover:bg-gray-600 font-bold my-3">
+            Show All
+          </button>
+        </NavLink>
       </div>
       <AboutUs></AboutUs>
       <Contact></Contact>
