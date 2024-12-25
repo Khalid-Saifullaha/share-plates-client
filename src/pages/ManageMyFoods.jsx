@@ -86,11 +86,11 @@ const ManageMyFoods = () => {
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-blue-200">
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-900"
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Food Name</span>
@@ -99,17 +99,17 @@ const ManageMyFoods = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-900"
                     >
                       <button className="flex items-center gap-x-2">
                         <span>Food Quantity</span>
                       </button>
                     </th>
 
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-900">
                       Delete
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-900">
                       Update
                     </th>
                   </tr>
