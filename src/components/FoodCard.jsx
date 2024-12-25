@@ -41,9 +41,6 @@ const FoodCard = ({ food }) => {
                 )}
               </p>
             </div>
-            {/* <div>
-              <p className="bg-blue-100 px-1 ml-9 rounded-2xl">{foodStatus}</p>
-            </div> */}
           </div>
           <div>
             <span className="font-semibold ">Food Quantity:</span>{" "}
