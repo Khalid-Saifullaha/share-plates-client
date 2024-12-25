@@ -59,7 +59,7 @@ const UpdateFood = () => {
       toast.success("Data Added Successfully!!!");
       navigate("/manage-my-foods");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
     }
     // make post request

@@ -17,10 +17,10 @@ const AddFood = () => {
       await axiosSecure.post(`/add-food`, foodData);
     },
     onSuccess: () => {
-      console.log("data saved");
+      // console.log("data saved");
     },
     onError: (err) => {
-      console.log(err);
+      // console.log(err);
     },
   });
   const handleSubmit = async (e) => {
@@ -59,7 +59,7 @@ const AddFood = () => {
       toast.success("Data Added Successfully!!!");
       navigate("/manage-my-foods");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
     }
     // make post request

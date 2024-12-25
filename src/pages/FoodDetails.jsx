@@ -71,10 +71,10 @@ const FoodDetails = () => {
       form.reset();
       // 3. Show toast and navigate
       toast.success("Food Request Successful!!!");
-      console.log(data);
+      // console.log(data);
       navigate("/my-food-request");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error("You have already placed a request on this food!");
     }
   };

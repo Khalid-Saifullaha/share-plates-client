@@ -54,6 +54,16 @@ const Navbar = () => {
               <NavLink to="/login">Login</NavLink>
             </li>
           )}
+          {user && (
+            <li className="">
+              <button
+                onClick={logOut}
+                className="bg-gray-200 hover:bg-gray-300 border-black block text-center"
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -86,17 +96,23 @@ const Navbar = () => {
             <li>
               <NavLink to="/availableFoods">Available Foods</NavLink>
             </li>
-            <li>
-              <NavLink to="/add-food" className="justify-between">
-                Add Food
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/manage-my-foods">Manage My Foods</NavLink>
-            </li>
-            <li>
-              <NavLink to="/my-food-request">Food Request</NavLink>
-            </li>
+            {user && (
+              <li>
+                <NavLink to="/add-food" className="justify-between">
+                  Add Food
+                </NavLink>
+              </li>
+            )}
+            {user && (
+              <li>
+                <NavLink to="/manage-my-foods">Manage My Foods</NavLink>
+              </li>
+            )}
+            {user && (
+              <li>
+                <NavLink to="/my-food-request">Food Request</NavLink>
+              </li>
+            )}
             <li>
               <NavLink to="/contact">Contact Us</NavLink>
             </li>

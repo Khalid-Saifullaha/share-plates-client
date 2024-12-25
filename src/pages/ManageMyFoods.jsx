@@ -33,11 +33,11 @@ const ManageMyFoods = () => {
       const { data } = await axios.delete(
         `${import.meta.env.VITE_API_URL}/food/${id}`
       );
-      console.log(data);
+      // console.log(data);
       toast.success("Data Added Successfully!!!");
       refetch();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
     }
   };

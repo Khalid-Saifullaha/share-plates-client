@@ -5,7 +5,7 @@ const FoodRequest = ({ foodRequest }) => {
   const [startDate, setStartDate] = useState(new Date());
   const { donatorName, pickupLocation, deadline, requestDate, expireDeadline } =
     foodRequest || {};
-  console.log(foodRequest);
+  // console.log(foodRequest);
   return (
     <tr>
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
