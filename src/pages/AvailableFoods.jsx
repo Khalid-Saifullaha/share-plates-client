@@ -7,6 +7,8 @@ const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
   const [isThreeColumn, setIsThreeColumn] = useState(true);
+  const [sortOrder, setSortOrder] = useState("asc");
+
   useEffect(() => {
     fetchAllFoods();
   }, [search]);
@@ -19,6 +21,17 @@ const AvailableFoods = () => {
   const toggleLayout = () => {
     setIsThreeColumn(!isThreeColumn); // Toggle between true and false
   };
+
+  const handleSort = () => {
+    const sortedFoods = [...foods].sort((a, b) => {
+      const dateA = new Date(a.deadline);
+      const dateB = new Date(b.deadline);
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+    setFoods(sortedFoods);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
   return (
     <div>
       <div className="flex justify-center my-5">
@@ -42,6 +55,14 @@ const AvailableFoods = () => {
             className="btn text-gray-100 btn-primary bg-gray-700 rounded-md hover:bg-gray-600"
           >
             Change Layout
+          </button>
+
+          <button
+            onClick={handleSort}
+            className="btn ml-7 text-gray-100 bg-gray-700 rounded-md hover:bg-gray-600"
+          >
+            Sort by Food Expire Date (
+            {sortOrder === "asc" ? "Ascending" : "Descending"})
           </button>
         </div>
       </div>
