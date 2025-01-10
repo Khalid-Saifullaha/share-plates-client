@@ -14,14 +14,15 @@ const FoodCard = ({ food }) => {
     foodStatus,
     _id,
   } = food || {};
+
   return (
     <div className=" ">
-      <div className=" max-w-xs mx-auto rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+      <div className=" max-w-xs  mx-auto rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
         <figure>
           <img
             src={foodImage}
-            alt="Shoes"
-            className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
+            alt={foodName}
+            className="object-cover object-center w-full h-48 rounded-t-md  dark:bg-gray-500"
           />
         </figure>
         <div className="md:ml-3 ml-1 flex flex-col items-start justify-center">
