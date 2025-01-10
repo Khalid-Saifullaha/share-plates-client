@@ -26,7 +26,7 @@ const Home = () => {
       <div className="   text-black ">
         <h1 className="text-4xl font-bold text-center">Featured Foods</h1>
       </div>
-      <div className="grid md:grid-cols-3  gap-3 w-11/12 px-6 py-10 mx-auto  ">
+      <div className="grid md:grid-cols-3 lg:grid-cols-4  gap-3 w-11/12 px-6 py-10 mx-auto  ">
         {foods.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}

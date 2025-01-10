@@ -17,9 +17,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar bg-base-100 shadow-sm lg:px-52  ${
-        active ? "activenav " : ""
-      }`}
+      className={`navbar bg-base-100 shadow-sm   ${active ? "activenav " : ""}`}
     >
       {/*  Navbar logo */}
       <div className="flex-1">
@@ -65,16 +63,6 @@ const Navbar = () => {
           {!user && (
             <li>
               <NavLink to="/login">Login</NavLink>
-            </li>
-          )}
-          {user && (
-            <li className="">
-              <button
-                onClick={logOut}
-                className="bg-gray-200 hover:bg-gray-300 border-black block text-center"
-              >
-                Logout
-              </button>
             </li>
           )}
         </ul>
