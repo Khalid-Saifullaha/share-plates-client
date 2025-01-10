@@ -1,13 +1,26 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/images/pngtree-s-abstract-icon-png-image_2924705.png";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
+import "./Navbar/Navbar.css";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [active, setactive] = useState(false);
+  window.addEventListener("scroll", function () {
+    if (this.window.scrollY > 100) {
+      setactive(true);
+    } else {
+      setactive(false);
+    }
+  });
 
   return (
-    <div className="navbar bg-base-100 shadow-sm container mx-auto z-50 relative">
+    <div
+      className={`navbar bg-base-100 shadow-sm lg:px-52  ${
+        active ? "activenav " : ""
+      }`}
+    >
       {/*  Navbar logo */}
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
