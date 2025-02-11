@@ -30,11 +30,11 @@ const FoodCard = ({ food }) => {
           <div className="flex justify-between gap-4">
             <div>
               <p>
-                <span className="font-semibold">Deadline:</span>{" "}
+                <span className="font-semibold"></span>{" "}
                 {deadline && format(new Date(deadline), "P")}
               </p>
               <p>
-                <span className="font-semibold">Status:</span>{" "}
+                <span className="font-semibold"></span>{" "}
                 {new Date(deadline) > new Date() ? (
                   <span className="text-green-600 font-bold">{foodStatus}</span>
                 ) : (
