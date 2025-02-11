@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AvailableFoods = () => {
   const axiosSecure = useAxiosSecure();
@@ -8,15 +9,16 @@ const AvailableFoods = () => {
   const [search, setSearch] = useState("");
   const [isThreeColumn, setIsThreeColumn] = useState(true);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchAllFoods();
   }, [search]);
 
   const fetchAllFoods = async () => {
+    setIsLoading(true); // Start loading
     try {
       const { data } = await axiosSecure.get(`/foods?search=${search}`);
-      // Ensure foods is an array
       if (Array.isArray(data.searchedFoods)) {
         setFoods(data.searchedFoods);
       } else if (Array.isArray(data.allFoods)) {
@@ -28,6 +30,8 @@ const AvailableFoods = () => {
     } catch (error) {
       console.error("Error fetching foods:", error);
       setFoods([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -86,17 +90,23 @@ const AvailableFoods = () => {
         All Available Foods
       </div>
 
-      <div
-        className={`grid gap-3 w-11/12 px-6 py-10 mx-auto ${
-          isThreeColumn ? "md:grid-cols-3 lg:grid-cols-4" : "md:grid-cols-2"
-        }`}
-      >
-        {foods.length > 0 ? (
-          foods.map((food) => <FoodCard key={food._id} food={food} />)
-        ) : (
-          <p className="text-center">No foods available.</p>
-        )}
-      </div>
+      {isLoading ? (
+        <div className="flex justify-center mt-10">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div
+          className={`grid gap-3 w-11/12 px-6 py-10 mx-auto ${
+            isThreeColumn ? "md:grid-cols-3 lg:grid-cols-4" : "md:grid-cols-2"
+          }`}
+        >
+          {foods.length > 0 ? (
+            foods.map((food) => <FoodCard key={food._id} food={food} />)
+          ) : (
+            <p className="text-center">No foods available.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
