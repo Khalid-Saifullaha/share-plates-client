@@ -20,7 +20,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-10/12 lg:w-8/12 mx-auto py-16 px-6 text-center">
+    <div className="w-10/12 lg:w-9/12 mx-auto py-16 px-6 text-center">
       <h1 className="text-4xl font-bold mb-10 text-gray-800">Contact Us</h1>
       {isSubmitted && (
         <p className="text-green-600 font-medium mb-6">
