@@ -15,6 +15,7 @@ import ManageMyFoods from "../pages/ManageMyFoods";
 import MyFoodRequest from "../pages/MyFoodRequest";
 import Contact from "../pages/Contact";
 import AboutUs from "../pages/AboutUs";
+import DashboardLayout from "../pages/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -54,23 +55,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/update/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateFood></UpdateFood>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-food",
 
-        element: (
-          <PrivateRoute>
-            <AddFood></AddFood>
-          </PrivateRoute>
-        ),
-      },
       {
         path: "/my-food-request",
 
@@ -80,14 +65,28 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
+    ],
+  },
+  // 🟦 Dashboard Routes
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "/manage-my-foods",
-        element: (
-          <PrivateRoute>
-            <ManageMyFoods></ManageMyFoods>
-          </PrivateRoute>
-        ),
+        path: "add-food",
+        element: <AddFood />,
+      },
+      {
+        path: "manage-my-foods",
+        element: <ManageMyFoods />,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateFood />,
       },
     ],
   },

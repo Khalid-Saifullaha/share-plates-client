@@ -36,23 +36,6 @@ const Navbar = () => {
           <li>
             <NavLink to="/availableFoods">Available Foods</NavLink>
           </li>
-          {user && (
-            <li>
-              <NavLink to="/add-food" className="justify-between">
-                Add Food
-              </NavLink>
-            </li>
-          )}
-          {user && (
-            <li>
-              <NavLink to="/manage-my-foods">Manage My Foods</NavLink>
-            </li>
-          )}
-          {user && (
-            <li>
-              <NavLink to="/my-food-request">Food Request</NavLink>
-            </li>
-          )}
 
           <li>
             <NavLink to="/contact">Contact Us</NavLink>
@@ -97,23 +80,7 @@ const Navbar = () => {
             <li>
               <NavLink to="/availableFoods">Available Foods</NavLink>
             </li>
-            {user && (
-              <li>
-                <NavLink to="/add-food" className="justify-between">
-                  Add Food
-                </NavLink>
-              </li>
-            )}
-            {user && (
-              <li>
-                <NavLink to="/manage-my-foods">Manage My Foods</NavLink>
-              </li>
-            )}
-            {user && (
-              <li>
-                <NavLink to="/my-food-request">Food Request</NavLink>
-              </li>
-            )}
+
             <li>
               <NavLink to="/contact">Contact Us</NavLink>
             </li>
@@ -149,6 +116,12 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1000] p-2 shadow bg-base-100 rounded-box w-52"
           >
+            <li className="mt-2">
+              <Link to="/dashboard" className="block text-center">
+                Dashboard
+              </Link>
+            </li>
+
             <li className="mt-2">
               <button
                 onClick={logOut}
