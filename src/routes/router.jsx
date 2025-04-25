@@ -55,16 +55,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-      {
-        path: "/my-food-request",
-
-        element: (
-          <PrivateRoute>
-            <MyFoodRequest></MyFoodRequest>
-          </PrivateRoute>
-        ),
-      },
     ],
   },
   // 🟦 Dashboard Routes
@@ -83,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "add-food",
         element: <AddFood />,
+      },
+      {
+        path: "my-food-request",
+        element: <MyFoodRequest />,
       },
       {
         path: "manage-my-foods",

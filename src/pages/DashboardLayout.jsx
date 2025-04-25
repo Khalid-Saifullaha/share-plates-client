@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import logo from "../assets/images/pngtree-s-abstract-icon-png-image_2924705.png";
 import { AuthContext } from "../providers/AuthProvider";
+import { GiMeal } from "react-icons/gi";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,7 +32,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Mobile Topbar */}
-      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-purple-700 text-white shadow-md">
+      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-gray-900 text-white shadow-md">
         <h2 className="text-xl font-bold">Dashboard</h2>
         <div className="flex items-center gap-2">
           <button onClick={toggleSidebar}>
@@ -50,7 +51,7 @@ const DashboardLayout = () => {
         {/* Close Button for Sidebar */}
         <button
           onClick={toggleSidebar}
-          className="lg:hidden absolute top-4 right-4 text-gray-700 hover:text-purple-600"
+          className="lg:hidden absolute top-4 right-4 text-gray-700 hover:text-gray-600"
         >
           <FaTimes size={24} />
         </button>
@@ -78,6 +79,15 @@ const DashboardLayout = () => {
             >
               <FaPlusCircle className="inline-block mr-2" />
               Add Food
+            </Link>
+
+            <Link
+              to="/dashboard/my-food-request"
+              className="text-gray-700 hover:text-gray-900 font-medium"
+              onClick={toggleSidebar}
+            >
+              <GiMeal className="inline-block mr-2" />
+              My Food Request
             </Link>
 
             <Link

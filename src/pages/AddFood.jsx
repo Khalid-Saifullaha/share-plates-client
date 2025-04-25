@@ -57,7 +57,7 @@ const AddFood = () => {
       form.reset();
       // 3. Show toast and navigate
       toast.success("Data Added Successfully!!!");
-      navigate("/manage-my-foods");
+      navigate("/dashboard/manage-my-foods");
     } catch (err) {
       // console.log(err);
       toast.error(err.message);

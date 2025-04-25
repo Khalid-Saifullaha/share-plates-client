@@ -74,7 +74,7 @@ const FoodDetails = () => {
       // 3. Show toast and navigate
       toast.success("Food Request Successful!!!");
       setIsModalOpen(false);
-      navigate("/my-food-request");
+      navigate("/dashboard/my-food-request");
     } catch (err) {
       toast.error("You have already placed a request on this food!");
     }
@@ -150,7 +150,7 @@ const FoodDetails = () => {
             </h2>
 
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-1 mt-4 sm:grid-cols-2">
                 {/* Food Name */}
                 <div>
                   <label className="text-gray-700" htmlFor="foodName">
