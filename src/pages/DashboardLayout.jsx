@@ -89,14 +89,6 @@ const DashboardLayout = () => {
               <GiMeal className="inline-block mr-2" />
               My Food Request
             </Link>
-
-            <Link
-              to="/"
-              className="text-gray-500 hover:text-black text-sm mt-6"
-              onClick={toggleSidebar}
-            >
-              Back to Home
-            </Link>
           </nav>
         </div>
 
